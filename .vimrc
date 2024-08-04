@@ -59,20 +59,30 @@ let g:camelcasemotion_key = '<leader>'
 
 
 "Vim highlight yank"
-let g:highlightedyank_highlight_duration = 1000
+let g:highlightedyank_highlight_duration = 200
 
 
 "=Basic Settings="
+
+let &t_SI = "\e[5 q"
+
+let &t_EI = "\e[1 q"
 
 syntax on
 
 let mapleader=' '
 
+let maplocalleader=' '
+
 set nocompatible
+
+set backspace=indent,eol,start
 
 set number
 
 set relativenumber
+
+set nostartofline
 
 set mouse=a
 
@@ -88,7 +98,11 @@ set ruler
 
 set expandtab
 
-set clipboard=unamedplus
+set smarttab
+
+set shiftwidth=2
+
+set clipboard=unamedplus,unamed
 
 set splitright
 
@@ -97,6 +111,63 @@ set splitbelow
 set scrolloff=100
 
 set tabstop=4
+
+set noerrorbells visualbell t_vb=
+
+set incsearch
+
+set ttimeout
+
+set timeoutlen=1000
+
+set ttimeoutlen=0
+
+set hidden
+
+
+"==Basic Mappings=="
+
+
+noremap j gj
+noremap k gk
+
+noremap <Down> gj
+noremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-j> <C-w><C-j>
+
+nnoremap <S-Tab> <C-w>w
+
+map <Leader><Space> :let @/=''<CR>
+
+nnoremap <Leader>g gqap
+xnoremap <Leader>g gqa
+
+
+nnoremap <Leader>r :%s///g<Left><Left>
+nnoremap <Leader>rc :%s///gc<Left><Left><Left>
+
+
+xnoremap <Leader>r :s///g<Left><Left>
+xnoremap <Leader>rc :s///gc<Left><Left><Left>
+
+nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<CR>cgn
+xnoremap <silent> s* "sy:let @/=@s<CR>cgn
+
+vmap y ygv<Esc>
+
+"==Basic Autocmds=="
+
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+
+autocmd VimResized * wincmd =
+
+
 
 
 
