@@ -102,7 +102,7 @@ set smarttab
 
 set shiftwidth=2
 
-set clipboard=unamedplus,unamed
+set clipboard=unnamedplus,unnamed
 
 set splitright
 
